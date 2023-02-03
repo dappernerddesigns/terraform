@@ -1,0 +1,16 @@
+name: Test & Deploy
+on:
+    push:
+        branches: -main
+    workflow_dispatch:
+        inputs:
+            environment:
+                type: string
+                default: dev
+                required: false
+jobs:
+    my-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: my-step
+              run: echo "Hello World!"
