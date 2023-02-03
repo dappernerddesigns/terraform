@@ -1,15 +1,17 @@
 # SOMETHING WRONG IN THIS FILE
 resource "aws_s3_bucket" "code_bucket" {
-  bucket_prefix = "nc-jm-de-code-"
+  bucket_prefix = "nc-vg-de-code-"
 }
 
 resource "aws_s3_bucket" "data_bucket" {
-  bucket_prefix = "nc-jm-de-data-"
+  bucket_prefix = "nc-vg-de-data-"
 }
 
 resource "aws_s3_object" "lambda_code" {
+  bucket = aws_s3_bucket.code_bucket.bucket
   key = "s3_file_reader/function.zip"
   source = "${path.module}/../function.zip"
+  acl="public-read"
 }
 
 resource "aws_s3_bucket_notification" "bucket_notification" {
